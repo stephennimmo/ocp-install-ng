@@ -1,0 +1,72 @@
+<p>OpenShift Cluster</p>
+
+<form #form="ngForm" [formGroup]="clusterForm" (ngSubmit)="onSubmit()" class="form">
+
+  <div class="card mb-3">
+    <div class="card-header">
+      Cluster Information
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="name">Cluster Name</label>
+        <input id="name" formControlName="name" class="form-control"
+               [ngClass]="{ 'is-invalid': form.submitted && controls.name.invalid }">
+        <div *ngIf="form.submitted && controls.name.invalid" class="text-danger">
+          <small *ngIf="controls.name.errors?.required">Cluster Name is required.</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="baseDomain">Cluster Base Domain</label>
+        <input id="baseDomain" formControlName="baseDomain" class="form-control"
+               [ngClass]="{ 'is-invalid': form.submitted && controls.baseDomain.invalid }">
+        <div *ngIf="form.submitted && controls.baseDomain.invalid" class="text-danger">
+          <small *ngIf="controls.baseDomain.errors?.required">Cluster Base Domain is required.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-header">
+      Networking
+    </div>
+    <div class="card-body">
+    </div>
+  </div>
+
+</form>
+
+<p>Output</p>
+
+<div class="row">
+  <div class="col-2">API DNS</div>
+  <div class="col-2">{{ apiDns }}</div>
+</div>
+<div class="row">
+  <div class="col-2">Ingress DNS</div>
+  <div class="col-2">{{ ingressDns }}</div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Cluster Checklist
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-1 align-content-center"><input type="checkbox" class="form-check-input" id="exampleCheck1"></div>
+      <div class="col-11">Create DNS record for <b>{{ apiDns }}</b></div>
+    </div>
+    <div class="row">
+      <div class="col-1 align-content-center"><input type="checkbox" class="form-check-input" id="exampleCheck1"></div>
+      <div class="col-11">Get certificate for <b>{{ apiDns }}</b></div>
+    </div>
+    <div class="row">
+      <div class="col-1 align-content-center"><input type="checkbox" class="form-check-input" id="exampleCheck1"></div>
+      <div class="col-11">Get wildcard certificate for <b>{{ ingressDns }}</b></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
